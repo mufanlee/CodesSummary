@@ -16,17 +16,17 @@ import java.util.*;
   * 11. 判断两个树是否互相镜像：isMirrorRec
   * 12. 求二叉树中两个节点的最低公共祖先节点：getLastCommonParent, getLastCommonParentRec, getLastCommonParentRec2
   * 13. 求二叉树中节点的最大距离：getMaxDistanceRec
-  * 14. 由前序遍历序列和中序遍历序列重建二叉树：rebuildBinaryTreeRec
+  * 14. 由前序遍历序列和中序遍历序列重建二叉树，由中序遍历序列和后序遍历序列重建二叉树：rebuildBinaryTreeRec, buildBinaryTreeRec
   * 15.判断二叉树是不是完全二叉树：isCompleteBinaryTree, isCompleteBinaryTreeRec
   * 
   */
 
-class TreeNode {
+/*class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
     TreeNode(int x) { val = x;}
-}
+}*/
 
 public class Solution {
 
@@ -678,7 +678,7 @@ public class Solution {
      * @return 二叉树根节点
      */
     public static TreeNode rebuildBinaryTreeRec(int[] preorder, int[] inorder) {
-        if (preorder.length == 0 || inorder.length == 0) return null;
+        if (preorder.length == 0 || inorder.length == 0 || preorder.length != inorder.length) return null;
         return rebuildBinaryTreeCore(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
     }
     /**
@@ -689,7 +689,7 @@ public class Solution {
      * @param inorder 中序遍历数组
      * @param is 中序遍历数组第一个元素的位置
      * @param ie 中序遍历数组最后一个元素的位置
-     * @return
+     * @return 二叉树根节点
      */
     public static TreeNode rebuildBinaryTreeCore(int[] preorder, int ps, int pe, int[] inorder, int is, int ie) {
         if (ps > pe || is > ie) return null;
@@ -710,6 +710,50 @@ public class Solution {
 
         root.left = rebuildBinaryTreeRec2(preorder.subList(1, pos+1), inorder.subList(0, pos));
         root.right = rebuildBinaryTreeRec2(preorder.subList(pos+1, preorder.size()), inorder.subList(pos+1, inorder.size()));
+        return root;
+    }
+
+    /**
+     * 14.由中序遍历序列和后序遍历序列重建二叉树递归解法
+     * @param inorder 中序遍历数组
+     * @param postorder 后序遍历数组
+     * @return 二叉树根节点
+     */
+    public static TreeNode buildBinaryTreeRec(int[] inorder, int[] postorder) {
+        if (inorder.length == 0 || postorder.length == 0 || inorder.length != postorder.length) return null;
+        return buildBinaryTreeCore(inorder, 0, inorder.length-1, postorder, 0, postorder.length-1);
+    }
+
+    public static TreeNode buildBinaryTreeCore(int[] inorder, int is, int ie, int[] postorder, int ps, int pe) {
+        if (is > ie || ps > pe) return null;
+        TreeNode root = new TreeNode(postorder[pe]);
+        int i = is;
+        while (i <= ie && inorder[i] != postorder[pe]) i++;
+        root.left = buildBinaryTreeCore(inorder, is, i-1, postorder, ps, ps+i-is-1);
+        root.right = buildBinaryTreeCore(inorder, i+1, ie, postorder, ps+i-is, pe-1);
+        return root;
+    }
+
+    /**
+     * 14.由中序遍历序列和后序遍历序列重建二叉树递归解法
+     * 利用HashMap保存中序序列
+     * @param inorder 中序遍历数组
+     * @param postorder 后序遍历数组
+     * @return 二叉树根节点
+     */
+    public TreeNode buildBinaryTreeRec2(int[] inorder, int[] postorder) {
+        if (inorder.length == 0 || postorder.length == 0 || inorder.length != postorder.length) return null;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++)
+            map.put(inorder[i], i);
+        return buildBinaryTreeCore(inorder, 0, inorder.length-1, postorder, 0, postorder.length-1, map);
+    }
+    private TreeNode buildBinaryTreeCore(int[] inorder, int is, int ie, int[] postorder, int ps, int pe, HashMap<Integer, Integer> map) {
+        if (is > ie || ps > pe) return null;
+        TreeNode root = new TreeNode(postorder[pe]);
+        int i = map.get(root.val);
+        root.left = buildBinaryTreeCore(inorder, is, i-1, postorder, ps, ps+i-is-1, map);
+        root.right = buildBinaryTreeCore(inorder, i+1, ie, postorder, ps+i-is, pe-1, map);
         return root;
     }
 
