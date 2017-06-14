@@ -1,5 +1,6 @@
 # LinkedList Problem
 
+##Easy
 141. Linked List Cycle
 237. Delete Node in a Linked List
 83. Remove Duplicates from Sorted List
@@ -8,6 +9,8 @@
 206. Reverse Linked List
 234. Palindrome Linked List
 21. Merge Two Sorted Lists
+
+##Medium
 61. Rotate List
 148. Sort List
 147. Insertion Sort List
@@ -17,3 +20,13 @@
 109. Convert Sorted List to Binary Search Tree
 92. Reverse Linked List II
 86. Partition List
+82. Remove Duplicates from Sorted List II
+445. Add Two Numbers II
+328. Odd Even Linked List
+19. Remove Nth Node From End of List
+2. Add Two Numbers
+24. Swap Nodes in Pairs
+
+##Hard
+25. Reverse Nodes in k-Group
+23. Merge k Sorted Lists
