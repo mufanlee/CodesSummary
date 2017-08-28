@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/Dynamic Programming/Dynamic Programming.iml" filepath="$PROJECT_DIR$/Dynamic Programming/Dynamic Programming.iml" />
       <module fileurl="file://$PROJECT_DIR$/Hash Table/Hash Table.iml" filepath="$PROJECT_DIR$/Hash Table/Hash Table.iml" />
       <module fileurl="file://$PROJECT_DIR$/Math/Math.iml" filepath="$PROJECT_DIR$/Math/Math.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mock/Mock.iml" filepath="$PROJECT_DIR$/Mock/Mock.iml" />
     </modules>
   </component>
 </project>

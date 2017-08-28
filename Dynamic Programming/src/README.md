@@ -23,6 +23,8 @@
 [638. Shopping Offers](ShoppingOffers.java)
 [646. Maximum Length of Pair Chain](MaximumLengthofPairChain.java)
 [647. Palindromic Substrings](PalindromicSubstrings.java)
+[650. 2 Keys Keyboard](Keys2Keyboard.java)
+[651. 4 Keys Keyboard](Keys4Keyboard.java)
 ## Hard
 
 [639. Decode Ways II]

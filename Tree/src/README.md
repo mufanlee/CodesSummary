@@ -7,7 +7,8 @@
 4. [637. Average of Levels in Binary Tree](AverageofLevelsinBinaryTree.java)
 
 ## Medium
-1. 
+1. [652. Find Duplicate Subtrees](FindDuplicateSubtrees.java)
+2. [666. Path Sum IV](PathSumIV.java)
 
 ## Hard
 1. 
